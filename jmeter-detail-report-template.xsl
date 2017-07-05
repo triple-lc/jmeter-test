@@ -77,7 +77,7 @@
 					color:#6b6b6b;
 					box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 					padding:10px;
-					<!-- table-layout:fixed; -->
+					table-layout:fixed;
 				}
 
 				table tr{
@@ -198,6 +198,7 @@
 				}
 
 				.failure_detail{
+
 					word-wrap:break-word;
 					overflow: hidden;
 					white-space: nowrap;
@@ -205,7 +206,7 @@
 				}
 
 				.failure_detail:hover{
-					width:100%;
+					white-space:normal;
 				}
 
 			</style>
