@@ -77,7 +77,7 @@
 					color:#6b6b6b;
 					box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 					padding:10px;
-					table-layout:fixed;
+					<!-- table-layout:fixed; -->
 				}
 
 				table tr{
@@ -85,9 +85,10 @@
 					background:#d4d1d5;
 					border-bottom:rgba(0,0,0,.05) 1px solid;
 				}
-				table td{
-					word-wrap:break-word;
-				}
+<!-- 				table td{
+					
+				} -->
+
 
 				.tableTitle{
 					height:60px;
@@ -194,6 +195,17 @@
 
 				.failure_demo{
 					border-right:rgba(0,0,0,.05) 1px solid;
+				}
+
+				.failure_detail{
+					word-wrap:break-word;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+
+				.failure_detail:hover{
+					width:100%;
 				}
 
 			</style>
@@ -365,7 +377,7 @@
 			<tr valign="center" align="left">	
 				<xsl:attribute name="class">
 					<xsl:choose>
-						<xsl:when test="$failureCount &gt; 0">Failure</xsl:when>
+						<xsl:when test="$failureCount &gt; 0">Failure pages-content-detail</xsl:when>
 						<xsl:otherwise>pages-content-detail</xsl:otherwise>
 					</xsl:choose>
 				</xsl:attribute>
@@ -418,7 +430,7 @@
 			
             <tr class="page_details">
                 <xsl:attribute name="id"><xsl:text/>page_details_<xsl:value-of select="position()" /></xsl:attribute>
-                <td colspan="6">
+                <td colspan="7">
                     <div align="center">
 			         	<!--<b>Details for Page "<xsl:value-of select="$label" />"</b>-->
 			         	<table class="detail-table" bordercolor="#000000" border="0"  cellpadding="1" cellspacing="1" width="100%">
@@ -503,7 +515,7 @@
 								</td>
 							</xsl:if>
 							<td class="failure_demo"><xsl:value-of select="@rc | @rs" /> - <xsl:value-of select="@rm" /></td>
-							<td><xsl:value-of select="assertionResult/failureMessage" /></td>
+							<td class="failure_detail"><xsl:value-of select="assertionResult/failureMessage" /></td>
 							<xsl:if test="$showData = 'y'">
 								<td><xsl:value-of select="./binary" /></td>
 							</xsl:if>
