@@ -77,6 +77,7 @@
 					color:#6b6b6b;
 					box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 					padding:10px;
+					table-layout:fixed;
 				}
 
 				table tr{
@@ -84,9 +85,9 @@
 					background:#d4d1d5;
 					border-bottom:rgba(0,0,0,.05) 1px solid;
 				}
-				/*table td{
-					box-sizing:border-box;
-				}*/
+				table td{
+					word-wrap:break-word;
+				}
 
 				.tableTitle{
 					height:60px;
@@ -330,7 +331,7 @@
 	<table class="pagesTable" align="center" border="0" cellpadding="5" cellspacing="2" width="95%">
 		<tr class="pagesTitle tableTitle" align="left">
 			<td>统计详情</td>
-			<td colspan="7"></td>
+			<td colspan="6"></td>
 		</tr>
 				
 		<tr class="pagesHead tableHead" align="left">
@@ -417,7 +418,7 @@
 			
             <tr class="page_details">
                 <xsl:attribute name="id"><xsl:text/>page_details_<xsl:value-of select="position()" /></xsl:attribute>
-                <td colspan="7">
+                <td colspan="6">
                     <div align="center">
 			         	<!--<b>Details for Page "<xsl:value-of select="$label" />"</b>-->
 			         	<table class="detail-table" bordercolor="#000000" border="0"  cellpadding="1" cellspacing="1" width="100%">
@@ -462,10 +463,10 @@
 				<td>失败详情</td>
 				<xsl:choose>
 					<xsl:when test="$showData = 'y'">
-						<td colspan="4"></td>
+						<td colspan="3"></td>
 					</xsl:when>
 					<xsl:otherwise>
-						<td colspan="3"></td>
+						<td colspan="2"></td>
 					</xsl:otherwise>
 				</xsl:choose>
 			</tr>
