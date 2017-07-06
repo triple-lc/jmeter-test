@@ -197,7 +197,7 @@
 					table-layout:fixed;
 				}
 
-				.failure_demo{
+				.failure_demo .failure_code{
 					border-right:rgba(0,0,0,.05) 1px solid;
 					<!-- word-wrap:break-word; -->
 				}
