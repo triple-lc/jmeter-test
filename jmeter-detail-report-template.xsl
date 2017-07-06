@@ -86,6 +86,10 @@
 					border-bottom:rgba(0,0,0,.05) 1px solid;
 				}
 
+				table td{
+					word-wrap:break-word;
+				}
+
 				.tableTitle{
 					height:60px;
 					color:#f6f6f6;
@@ -195,12 +199,11 @@
 
 				.failure_demo{
 					border-right:rgba(0,0,0,.05) 1px solid;
-					word-warp:break-word;
+					<!-- word-wrap:break-word; -->
 				}
 
 				.failure_detail{
-
-					word-wrap:break-word;
+					<!-- word-wrap:break-word; -->
 					overflow: hidden;
 					white-space: nowrap;
 					text-overflow: ellipsis;
@@ -517,7 +520,7 @@
 								<xsl:value-of select="@lb"/>
 								</td>
 							</xsl:if>
-							<td class="failure_demo"><xsl:value-of select="@rc | @rs" /> - <xsl:value-of select="@rm" /></td>
+							<td class="failure_code"><xsl:value-of select="@rc | @rs" /> - <xsl:value-of select="@rm" /></td>
 							<td class="failure_detail"><xsl:value-of select="assertionResult/failureMessage" /></td>
 							<xsl:if test="$showData = 'y'">
 								<td><xsl:value-of select="./binary" /></td>
