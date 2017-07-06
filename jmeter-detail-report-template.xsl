@@ -195,6 +195,7 @@
 
 				.failure_demo{
 					border-right:rgba(0,0,0,.05) 1px solid;
+					word-warp:break-word;
 				}
 
 				.failure_detail{
@@ -473,23 +474,24 @@
 		<!--<table class="detailTable">-->
 			<!--<h2>Failure Detail</h2>-->
 			<tr class="failureTitle tableTitle" align="left">
-				<td>失败详情</td>
+				<td width="20%">失败详情</td>
+				<td width="10%"></td>
 				<xsl:choose>
 					<xsl:when test="$showData = 'y'">
-						<td colspan="3"></td>
+						<td colspan="2"></td>
 					</xsl:when>
 					<xsl:otherwise>
-						<td colspan="2"></td>
+						<td></td>
 					</xsl:otherwise>
 				</xsl:choose>
 			</tr>
 
 			<tr class="failureHead tableHead" align="left">
-				<td width="30%">测试用例</td>
-				<td width="20%">响应信息</td>
+				<td>测试用例</td>
+				<td>响应信息</td>
 				<td>错误详情</td>
 				<xsl:if test="$showData = 'y'">
-				<th>Response Data</th>
+				<td>Response Data</td>
 				</xsl:if>
 			</tr>
 
