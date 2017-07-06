@@ -77,7 +77,7 @@
 					color:#6b6b6b;
 					box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 					padding:10px;
-					table-layout:fixed;
+					<!-- table-layout:fixed; -->
 				}
 
 				table tr{
@@ -85,10 +85,6 @@
 					background:#d4d1d5;
 					border-bottom:rgba(0,0,0,.05) 1px solid;
 				}
-<!-- 				table td{
-					
-				} -->
-
 
 				.tableTitle{
 					height:60px;
@@ -191,6 +187,10 @@
 				.detail-table{
 					color:#eeeeee;
 					box-shadow:none;
+				}
+
+				.failureTable{
+					table-layout:fixed
 				}
 
 				.failure_demo{
