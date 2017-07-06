@@ -469,7 +469,7 @@
 
 	<xsl:if test="$allFailureCount > 0">
 		
-		<table class="failureTalbe" align="center" border="0" cellpadding="5" cellspacing="2" width="95%">
+		<table class="failureTable" align="center" border="0" cellpadding="5" cellspacing="2" width="95%">
 		<!--<table class="detailTable">-->
 			<!--<h2>Failure Detail</h2>-->
 			<tr class="failureTitle tableTitle" align="left">
