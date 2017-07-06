@@ -190,7 +190,7 @@
 				}
 
 				.failureTable{
-					table-layout:fixed
+					table-layout:fixed;
 				}
 
 				.failure_demo{
