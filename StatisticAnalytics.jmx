@@ -26,18 +26,57 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="now_sec" elementType="Argument">
+              <stringProp name="Argument.name">now_sec</stringProp>
+              <stringProp name="Argument.value">${__time(/1000,)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">当前时间的10位时间戳</stringProp>
+            </elementProp>
+            <elementProp name="today_zero_milli" elementType="Argument">
+              <stringProp name="Argument.name">today_zero_milli</stringProp>
+              <stringProp name="Argument.value">${__javaScript(Date.parse(&quot;${__time(yyyy/MM/dd,)}&quot;))}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">今天0点的13位时间戳</stringProp>
+            </elementProp>
+            <elementProp name="today_zero_sec" elementType="Argument">
+              <stringProp name="Argument.name">today_zero_sec</stringProp>
+              <stringProp name="Argument.value">${__javaScript(Math.round(Date.parse(&quot;${__time(yyyy/MM/dd,)}&quot;))/1000)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">今天0点的10位时间戳</stringProp>
+            </elementProp>
+            <elementProp name="now_milli" elementType="Argument">
+              <stringProp name="Argument.name">now_milli</stringProp>
+              <stringProp name="Argument.value">${__time(,)}</stringProp>
+              <stringProp name="Argument.desc">当前时间的13位时间戳</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="test" elementType="Argument">
+              <stringProp name="Argument.name">test</stringProp>
+              <stringProp name="Argument.value">${__javaScript(Date.parse(&quot;${__time(yyyy-MM-dd,)}&quot;))}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="job_metric_type" elementType="Argument">
+              <stringProp name="Argument.name">job_metric_type</stringProp>
+              <stringProp name="Argument.value">${__chooseRandom(time,io,num,)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="top_data_type" elementType="Argument">
+              <stringProp name="Argument.name">top_data_type</stringProp>
+              <stringProp name="Argument.value">${__chooseRandom(mr,hive,spark,)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="top_data_metric" elementType="Argument">
+              <stringProp name="Argument.name">top_data_metric</stringProp>
+              <stringProp name="Argument.value">${__chooseRandom(elapsedTime,HDFS,totaltaskcount,jobtaskphysicalmemorybytes,jobtaskcpumilliseconds,)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="LoginController" enabled="true"/>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assetion" enabled="true">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="-764746078">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;lastName&quot;:null,&quot;clusterNames&quot;:[&quot;appuser&quot;],&quot;admin&quot;:0}}</stringProp>
-              <stringProp name="0"></stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">16</intProp>
-          </ResponseAssertion>
-          <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="LoginPage" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
               <collectionProp name="Arguments.arguments">
@@ -72,7 +111,64 @@
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
-          <hashTree/>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assetion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+                <stringProp name="0"></stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="LoginEnter" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="cluster" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">cdh</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">cluster</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/auth/clusterType/enter</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assetion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+                <stringProp name="0"></stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script"></stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
@@ -91,697 +187,383 @@
         <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie 管理器" enabled="true">
           <collectionProp name="CookieManager.cookies"/>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
-          <stringProp name="CookieManager.policy">standard</stringProp>
           <stringProp name="CookieManager.implementation">org.apache.jmeter.protocol.http.control.HC4CookieHandler</stringProp>
         </CookieManager>
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytics_Total_Overview" enabled="true"/>
         <hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Total_Overview_Page" enabled="true"/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/ov/storage" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/ov/storage</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TotalOverviewStorage" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489125496</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/ov/storage</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="-1265452800">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[{&quot;name&quot;:&quot;HDFS存储总量&quot;,&quot;value&quot;:&quot;7.0TB&quot;,&quot;increase&quot;:&quot;32.7G&quot;},{&quot;name&quot;:&quot;HDFS存储增量&quot;,&quot;value&quot;:&quot;32.7G&quot;},{&quot;name&quot;:&quot;HBase存储总量&quot;,&quot;value&quot;:&quot;16.1TB&quot;,&quot;increase&quot;:&quot;153.5G&quot;},{&quot;name&quot;:&quot;HBase增量&quot;,&quot;value&quot;:&quot;153.5G&quot;}]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">8</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TotalOverviewJob" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489125496</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/ov/job</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="668424180">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;legend&quot;:[&quot;Spark&quot;,&quot;MR&quot;,&quot;Hive&quot;],&quot;text&quot;:&quot;作业指标统计图&quot;,&quot;series&quot;:[{&quot;name&quot;:&quot;Spark&quot;,&quot;data&quot;:[&quot;26&quot;,&quot;0&quot;,&quot;24.71&quot;,&quot;2184.51&quot;,&quot;1289549&quot;,&quot;139.65&quot;]},{&quot;name&quot;:&quot;MR&quot;,&quot;data&quot;:[&quot;369&quot;,&quot;0&quot;,&quot;54.16&quot;,&quot;99.68&quot;,&quot;8903&quot;,&quot;343.83&quot;]},{&quot;name&quot;:&quot;Hive&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;0&quot;,&quot;0.01&quot;,&quot;0.08&quot;,&quot;159&quot;,&quot;0.07&quot;]}],&quot;xAxisDatas&quot;:[&quot;作业总数&quot;,&quot;作业失败数&quot;,&quot;作业时间(h)&quot;,&quot;CPU总时间(h)&quot;,&quot;任务总数&quot;,&quot;IO读写数(G)&quot;]}}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">8</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TotalOverviewHbase" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489125496</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/ov/hbase</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="-1302792305">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[{&quot;name&quot;:&quot;namespace数量&quot;,&quot;value&quot;:&quot;1&quot;},{&quot;name&quot;:&quot;table数量&quot;,&quot;value&quot;:&quot;49&quot;},{&quot;name&quot;:&quot;region数量&quot;,&quot;value&quot;:&quot;5591&quot;},{&quot;name&quot;:&quot;存储文件数&quot;,&quot;value&quot;:&quot;13223&quot;},{&quot;name&quot;:&quot;存储文件大小(G)&quot;,&quot;value&quot;:&quot;16532.523&quot;},{&quot;name&quot;:&quot;请求数&quot;,&quot;value&quot;:&quot;869018414&quot;}]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">8</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
           </hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="JobOverview_JobView" enabled="true"/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/ov/job" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/ov/job</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Job_Time_Analytics" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489125672</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">time</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/jobs/metric</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="-452285853">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;legend&quot;:[&quot;spark&quot;,&quot;MR&quot;,&quot;Hive&quot;],&quot;text&quot;:&quot;作业时间分析&quot;,&quot;series&quot;:[{&quot;name&quot;:&quot;spark&quot;,&quot;data&quot;:[&quot;24.71&quot;,&quot;2184.51&quot;,&quot;0.38&quot;]},{&quot;name&quot;:&quot;MR&quot;,&quot;data&quot;:[&quot;54.16&quot;,&quot;99.68&quot;,&quot;2.36&quot;]},{&quot;name&quot;:&quot;Hive&quot;,&quot;data&quot;:[&quot;0.01&quot;,&quot;0.08&quot;,&quot;0&quot;]}],&quot;xAxisDatas&quot;:[&quot;总时间(h)&quot;,&quot;cpu总时间(h)&quot;,&quot;gc总时间(h)&quot;]}}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Job_IO_Analytics" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489125672</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">io</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/jobs/metric</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="1344840369">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;legend&quot;:[&quot;spark&quot;,&quot;MR&quot;,&quot;Hive&quot;],&quot;text&quot;:&quot;作业IO读写指标分析&quot;,&quot;series&quot;:[{&quot;name&quot;:&quot;spark&quot;,&quot;data&quot;:[&quot;68.14&quot;,&quot;68.14&quot;,&quot;14.82&quot;,&quot;3.38&quot;]},{&quot;name&quot;:&quot;MR&quot;,&quot;data&quot;:[&quot;301.64&quot;,&quot;27.13&quot;,&quot;306.31&quot;,&quot;15.06&quot;]},{&quot;name&quot;:&quot;Hive&quot;,&quot;data&quot;:[&quot;0.04&quot;,&quot;0&quot;,&quot;0.04&quot;,&quot;0.03&quot;]}],&quot;xAxisDatas&quot;:[&quot;HDFS读(G)&quot;,&quot;HDFS写(G)&quot;,&quot;远程读(G)&quot;,&quot;本地磁盘读取数(G)&quot;]}}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Job_Num_Analytics" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489125672</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">num</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/jobs/metric</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="1618440034">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;legend&quot;:[&quot;spark&quot;,&quot;MR&quot;,&quot;Hive&quot;],&quot;text&quot;:&quot;作业数量分析&quot;,&quot;series&quot;:[{&quot;name&quot;:&quot;spark&quot;,&quot;data&quot;:[&quot;26&quot;,&quot;1289549&quot;,&quot;16795&quot;]},{&quot;name&quot;:&quot;MR&quot;,&quot;data&quot;:[&quot;369&quot;,&quot;8903&quot;,&quot;0&quot;]},{&quot;name&quot;:&quot;Hive&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;159&quot;,&quot;0&quot;]}],&quot;xAxisDatas&quot;:[&quot;作业数量&quot;,&quot;Task总数&quot;,&quot;失败Task数&quot;]}}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="JobOverview_Spark_MR_Hive_Tab" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489125672</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value"></stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/jobs/compare</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="101700780">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;jobview&quot;:[{&quot;metricName&quot;:&quot;作业总数&quot;,&quot;yesterday&quot;:&quot;396&quot;,&quot;beforeYesterday&quot;:&quot;397&quot;,&quot;increase&quot;:&quot;-1&quot;,&quot;rate&quot;:&quot;-0.25%&quot;},{&quot;metricName&quot;:&quot;cpu总时间(h)&quot;,&quot;yesterday&quot;:&quot;2408.44&quot;,&quot;beforeYesterday&quot;:&quot;1842.1&quot;,&quot;increase&quot;:&quot;566.34&quot;,&quot;rate&quot;:&quot;30.74%&quot;},{&quot;metricName&quot;:&quot;HDFS读写总数(G)&quot;,&quot;yesterday&quot;:&quot;496.86&quot;,&quot;beforeYesterday&quot;:&quot;456.3&quot;,&quot;increase&quot;:&quot;40.56&quot;,&quot;rate&quot;:&quot;8.89%&quot;},{&quot;metricName&quot;:&quot;HDFS读(G)&quot;,&quot;yesterday&quot;:&quot;388.29&quot;,&quot;beforeYesterday&quot;:&quot;368.3&quot;,&quot;increase&quot;:&quot;19.99&quot;,&quot;rate&quot;:&quot;5.43%&quot;},{&quot;metricName&quot;:&quot;HDFS写(G)&quot;,&quot;yesterday&quot;:&quot;108.57&quot;,&quot;beforeYesterday&quot;:&quot;88&quot;,&quot;increase&quot;:&quot;20.57&quot;,&quot;rate&quot;:&quot;23.37%&quot;},{&quot;metricName&quot;:&quot;本地磁盘读写(G)&quot;,&quot;yesterday&quot;:&quot;19.86&quot;,&quot;beforeYesterday&quot;:&quot;19.2&quot;,&quot;increase&quot;:&quot;0.66&quot;,&quot;rate&quot;:&quot;3.44%&quot;}],&quot;spark&quot;:[{&quot;metricName&quot;:&quot;app数&quot;,&quot;yesterday&quot;:&quot;245&quot;,&quot;beforeYesterday&quot;:&quot;243&quot;,&quot;increase&quot;:&quot;2&quot;,&quot;rate&quot;:&quot;0.82%&quot;},{&quot;metricName&quot;:&quot;job数&quot;,&quot;yesterday&quot;:&quot;8694&quot;,&quot;beforeYesterday&quot;:&quot;8808&quot;,&quot;increase&quot;:&quot;-114&quot;,&quot;rate&quot;:&quot;-1.29%&quot;},{&quot;metricName&quot;:&quot;stage数&quot;,&quot;yesterday&quot;:&quot;17218&quot;,&quot;beforeYesterday&quot;:&quot;17503&quot;,&quot;increase&quot;:&quot;-285&quot;,&quot;rate&quot;:&quot;-1.63%&quot;},{&quot;metricName&quot;:&quot;task数&quot;,&quot;yesterday&quot;:&quot;1286977&quot;,&quot;beforeYesterday&quot;:&quot;1323075&quot;,&quot;increase&quot;:&quot;-36098&quot;,&quot;rate&quot;:&quot;-2.73%&quot;},{&quot;metricName&quot;:&quot;失败task数&quot;,&quot;yesterday&quot;:&quot;17834&quot;,&quot;beforeYesterday&quot;:&quot;10512&quot;,&quot;increase&quot;:&quot;7322&quot;,&quot;rate&quot;:&quot;69.65%&quot;},{&quot;metricName&quot;:&quot;app总时间(h)&quot;,&quot;yesterday&quot;:&quot;24.80&quot;,&quot;beforeYesterday&quot;:&quot;24.82&quot;,&quot;increase&quot;:&quot;-0.02&quot;,&quot;rate&quot;:&quot;-0.08%&quot;},{&quot;metricName&quot;:&quot;gc总时间(h)&quot;,&quot;yesterday&quot;:&quot;0.53&quot;,&quot;beforeYesterday&quot;:&quot;0.26&quot;,&quot;increase&quot;:&quot;0.27&quot;,&quot;rate&quot;:&quot;103.85%&quot;},{&quot;metricName&quot;:&quot;总内存(G)&quot;,&quot;yesterday&quot;:&quot;3450&quot;,&quot;beforeYesterday&quot;:&quot;3136&quot;,&quot;increase&quot;:&quot;314&quot;,&quot;rate&quot;:&quot;10.01%&quot;}],&quot;mr&quot;:[{&quot;metricName&quot;:&quot;job总时间&quot;,&quot;yesterday&quot;:&quot;49.00&quot;,&quot;beforeYesterday&quot;:&quot;53.00&quot;,&quot;increase&quot;:&quot;-4&quot;,&quot;rate&quot;:&quot;-7.55%&quot;},{&quot;metricName&quot;:&quot;cpu时间&quot;,&quot;yesterday&quot;:&quot;105.00&quot;,&quot;beforeYesterday&quot;:&quot;104.00&quot;,&quot;increase&quot;:&quot;1&quot;,&quot;rate&quot;:&quot;0.96%&quot;},{&quot;metricName&quot;:&quot;gc总时间&quot;,&quot;yesterday&quot;:&quot;2.00&quot;,&quot;beforeYesterday&quot;:&quot;2.00&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;0%&quot;},{&quot;metricName&quot;:&quot;job总数&quot;,&quot;yesterday&quot;:&quot;368&quot;,&quot;beforeYesterday&quot;:&quot;368&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;0%&quot;},{&quot;metricName&quot;:&quot;成功job数&quot;,&quot;yesterday&quot;:&quot;368&quot;,&quot;beforeYesterday&quot;:&quot;368&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;0%&quot;},{&quot;metricName&quot;:&quot;失败job数&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;hdfs读操作数&quot;,&quot;yesterday&quot;:&quot;649308&quot;,&quot;beforeYesterday&quot;:&quot;640769&quot;,&quot;increase&quot;:&quot;8539&quot;,&quot;rate&quot;:&quot;1.33%&quot;},{&quot;metricName&quot;:&quot;hdfs写操作数&quot;,&quot;yesterday&quot;:&quot;31&quot;,&quot;beforeYesterday&quot;:&quot;30&quot;,&quot;increase&quot;:&quot;1&quot;,&quot;rate&quot;:&quot;3.33%&quot;},{&quot;metricName&quot;:&quot;map数&quot;,&quot;yesterday&quot;:&quot;6866&quot;,&quot;beforeYesterday&quot;:&quot;6685&quot;,&quot;increase&quot;:&quot;181&quot;,&quot;rate&quot;:&quot;2.71%&quot;},{&quot;metricName&quot;:&quot;reduce数&quot;,&quot;yesterday&quot;:&quot;1715&quot;,&quot;beforeYesterday&quot;:&quot;1715&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;0%&quot;},{&quot;metricName&quot;:&quot;HDFS读(G)&quot;,&quot;yesterday&quot;:&quot;312.00&quot;,&quot;beforeYesterday&quot;:&quot;309.00&quot;,&quot;increase&quot;:&quot;3&quot;,&quot;rate&quot;:&quot;0.97%&quot;},{&quot;metricName&quot;:&quot;HDFS写(G)&quot;,&quot;yesterday&quot;:&quot;32.00&quot;,&quot;beforeYesterday&quot;:&quot;29.00&quot;,&quot;increase&quot;:&quot;3&quot;,&quot;rate&quot;:&quot;10.34%&quot;}],&quot;hive&quot;:[{&quot;metricName&quot;:&quot;job总时间&quot;,&quot;yesterday&quot;:&quot;0.00&quot;,&quot;beforeYesterday&quot;:&quot;0.00&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;cpu时间&quot;,&quot;yesterday&quot;:&quot;0.00&quot;,&quot;beforeYesterday&quot;:&quot;0.00&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;gc总时间&quot;,&quot;yesterday&quot;:&quot;0.00&quot;,&quot;beforeYesterday&quot;:&quot;0.00&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;job总数&quot;,&quot;yesterday&quot;:&quot;2&quot;,&quot;beforeYesterday&quot;:&quot;4&quot;,&quot;increase&quot;:&quot;-2&quot;,&quot;rate&quot;:&quot;-50%&quot;},{&quot;metricName&quot;:&quot;成功job数&quot;,&quot;yesterday&quot;:&quot;2&quot;,&quot;beforeYesterday&quot;:&quot;4&quot;,&quot;increase&quot;:&quot;-2&quot;,&quot;rate&quot;:&quot;-50%&quot;},{&quot;metricName&quot;:&quot;失败job数&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;hdfs读操作数&quot;,&quot;yesterday&quot;:&quot;1548&quot;,&quot;beforeYesterday&quot;:&quot;2542&quot;,&quot;increase&quot;:&quot;-994&quot;,&quot;rate&quot;:&quot;-39.1%&quot;},{&quot;metricName&quot;:&quot;hdfs写操作数&quot;,&quot;yesterday&quot;:&quot;636&quot;,&quot;beforeYesterday&quot;:&quot;1044&quot;,&quot;increase&quot;:&quot;-408&quot;,&quot;rate&quot;:&quot;-39.08%&quot;},{&quot;metricName&quot;:&quot;map数&quot;,&quot;yesterday&quot;:&quot;318&quot;,&quot;beforeYesterday&quot;:&quot;522&quot;,&quot;increase&quot;:&quot;-204&quot;,&quot;rate&quot;:&quot;-39.08%&quot;},{&quot;metricName&quot;:&quot;reduce数&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;HDFS读(G)&quot;,&quot;yesterday&quot;:&quot;0.00&quot;,&quot;beforeYesterday&quot;:&quot;0.00&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;HDFS写(G)&quot;,&quot;yesterday&quot;:&quot;0.00&quot;,&quot;beforeYesterday&quot;:&quot;0.00&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;}]}}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
           </hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Hbase_Overview" enabled="true"/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/ov/hbase" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/ov/hbase</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HBase_Overview_Test" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489129583</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/hbase</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="1384543464">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[{&quot;metricName&quot;:&quot;table数量&quot;,&quot;yesterday&quot;:&quot;49&quot;,&quot;beforeYesterday&quot;:&quot;48&quot;,&quot;increase&quot;:&quot;1&quot;,&quot;rate&quot;:&quot;2.08%&quot;},{&quot;metricName&quot;:&quot;region数量&quot;,&quot;yesterday&quot;:&quot;5591&quot;,&quot;beforeYesterday&quot;:&quot;5553&quot;,&quot;increase&quot;:&quot;38&quot;,&quot;rate&quot;:&quot;0.68%&quot;},{&quot;metricName&quot;:&quot;存储文件数&quot;,&quot;yesterday&quot;:&quot;13223&quot;,&quot;beforeYesterday&quot;:&quot;13598&quot;,&quot;increase&quot;:&quot;-375&quot;,&quot;rate&quot;:&quot;-2.76%&quot;},{&quot;metricName&quot;:&quot;存储文件大小(G)&quot;,&quot;yesterday&quot;:&quot;16532.523&quot;,&quot;beforeYesterday&quot;:&quot;16378.980&quot;,&quot;increase&quot;:&quot;153.543&quot;,&quot;rate&quot;:&quot;0.94%&quot;},{&quot;metricName&quot;:&quot;memoStore大小(G)&quot;,&quot;yesterday&quot;:&quot;1.684&quot;,&quot;beforeYesterday&quot;:&quot;1.673&quot;,&quot;increase&quot;:&quot;0.011&quot;,&quot;rate&quot;:&quot;0.66%&quot;},{&quot;metricName&quot;:&quot;increment操作次数&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;append操作数&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;delete操作数&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;get操作数&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;scanNext操作数&quot;,&quot;yesterday&quot;:&quot;5424&quot;,&quot;beforeYesterday&quot;:&quot;4831&quot;,&quot;increase&quot;:&quot;593&quot;,&quot;rate&quot;:&quot;12.27%&quot;},{&quot;metricName&quot;:&quot;请求数&quot;,&quot;yesterday&quot;:&quot;869018414&quot;,&quot;beforeYesterday&quot;:&quot;844153557&quot;,&quot;increase&quot;:&quot;24864857&quot;,&quot;rate&quot;:&quot;2.95%&quot;}]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
           </hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Index_Top_10" enabled="true"/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/jobs/metric" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+                <elementProp name="type" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${job_metric_type}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">type</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/jobs/metric</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MR_elapsedTime_Index_Top_10" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489129583</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">mr</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                  <elementProp name="metric" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">elapsedTime</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">metric</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/top/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="-1068905056">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[{&quot;key&quot;:1,&quot;id&quot;:&quot;840007939732410368&quot;,&quot;appId&quot;:&quot;application_1428668992862_18973214&quot;,&quot;jobName&quot;:&quot;MrBigStatisticDayRc&quot;,&quot;value&quot;:&quot;15696&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:2,&quot;id&quot;:&quot;839931394061897728&quot;,&quot;appId&quot;:&quot;application_1428668992862_18971227&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadDayRc&quot;,&quot;value&quot;:&quot;3512&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:3,&quot;id&quot;:&quot;839931392161878016&quot;,&quot;appId&quot;:&quot;application_1428668992862_18971245&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadRc&quot;,&quot;value&quot;:&quot;3486&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:4,&quot;id&quot;:&quot;839976454447042560&quot;,&quot;appId&quot;:&quot;application_1428668992862_18975064&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadRc&quot;,&quot;value&quot;:&quot;3236&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:5,&quot;id&quot;:&quot;840082039540682752&quot;,&quot;appId&quot;:&quot;application_1428668992862_18985478&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadRc&quot;,&quot;value&quot;:&quot;3192&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:6,&quot;id&quot;:&quot;840037016145104896&quot;,&quot;appId&quot;:&quot;application_1428668992862_18980994&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadRc&quot;,&quot;value&quot;:&quot;3120&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:7,&quot;id&quot;:&quot;840157376307924992&quot;,&quot;appId&quot;:&quot;application_1428668992862_18991549&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadRc&quot;,&quot;value&quot;:&quot;3077&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:8,&quot;id&quot;:&quot;839948398684672000&quot;,&quot;appId&quot;:&quot;application_1428668992862_18972380&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadRc&quot;,&quot;value&quot;:&quot;3076&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:9,&quot;id&quot;:&quot;840127439404404736&quot;,&quot;appId&quot;:&quot;application_1428668992862_18989068&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadRc&quot;,&quot;value&quot;:&quot;3073&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:10,&quot;id&quot;:&quot;840007909998989312&quot;,&quot;appId&quot;:&quot;application_1428668992862_18977919&quot;,&quot;jobName&quot;:&quot;SparkBigDataLoadRc&quot;,&quot;value&quot;:&quot;3034&quot;,&quot;logUrl&quot;:null}]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Hive_Hdfs_Index_Top_10" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489129583</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">hive</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                  <elementProp name="metric" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">HDFS</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">metric</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/top/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="1539010465">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Spark_CPU_Index_Top_10" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489130681</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">spark</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                  <elementProp name="metric" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">jobtaskcpumilliseconds</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">metric</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/top/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="851460534">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[{&quot;key&quot;:1,&quot;id&quot;:&quot;18094672&quot;,&quot;appId&quot;:&quot;application_1428668992862_18990034&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;189904&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18990034/1&quot;},{&quot;key&quot;:2,&quot;id&quot;:&quot;18087121&quot;,&quot;appId&quot;:&quot;application_1428668992862_18972192&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;143012&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18972192/1&quot;},{&quot;key&quot;:3,&quot;id&quot;:&quot;18087746&quot;,&quot;appId&quot;:&quot;application_1428668992862_18973674&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;141598&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18973674/1&quot;},{&quot;key&quot;:4,&quot;id&quot;:&quot;18097654&quot;,&quot;appId&quot;:&quot;application_1428668992862_18996127&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;102108&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18996127/1&quot;},{&quot;key&quot;:5,&quot;id&quot;:&quot;18090078&quot;,&quot;appId&quot;:&quot;application_1428668992862_18979244&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;99172&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18979244/1&quot;},{&quot;key&quot;:6,&quot;id&quot;:&quot;18091157&quot;,&quot;appId&quot;:&quot;application_1428668992862_18982340&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;93586&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18982340/1&quot;},{&quot;key&quot;:7,&quot;id&quot;:&quot;18088316&quot;,&quot;appId&quot;:&quot;application_1428668992862_18974948&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;91643&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18974948/1&quot;},{&quot;key&quot;:8,&quot;id&quot;:&quot;18090598&quot;,&quot;appId&quot;:&quot;application_1428668992862_18980714&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;82748&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18980714/1&quot;},{&quot;key&quot;:9,&quot;id&quot;:&quot;18089425&quot;,&quot;appId&quot;:&quot;application_1428668992862_18977626&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;78656&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18977626/1&quot;},{&quot;key&quot;:10,&quot;id&quot;:&quot;18091775&quot;,&quot;appId&quot;:&quot;application_1428668992862_18983917&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;77755&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18983917/1&quot;}]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Spark_Mem_Use_Index_Top_10" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489131111</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">spark</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                  <elementProp name="metric" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">jobtaskphysicalmemorybytes</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">metric</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/top/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="672807105">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[{&quot;key&quot;:1,&quot;id&quot;:&quot;64202468&quot;,&quot;appId&quot;:&quot;application_1428668992862_18972439&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.LearnProccesser&quot;,&quot;value&quot;:&quot;200&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18972439/1&quot;},{&quot;key&quot;:2,&quot;id&quot;:&quot;63925563&quot;,&quot;appId&quot;:&quot;application_1428668992862_18968651&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18968651/1&quot;},{&quot;key&quot;:3,&quot;id&quot;:&quot;65339996&quot;,&quot;appId&quot;:&quot;application_1428668992862_18988789&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18988789/1&quot;},{&quot;key&quot;:4,&quot;id&quot;:&quot;65433107&quot;,&quot;appId&quot;:&quot;application_1428668992862_18990034&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18990034/1&quot;},{&quot;key&quot;:5,&quot;id&quot;:&quot;64110170&quot;,&quot;appId&quot;:&quot;application_1428668992862_18971083&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18971083/1&quot;},{&quot;key&quot;:6,&quot;id&quot;:&quot;65527962&quot;,&quot;appId&quot;:&quot;application_1428668992862_18991264&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18991264/1&quot;},{&quot;key&quot;:7,&quot;id&quot;:&quot;64200622&quot;,&quot;appId&quot;:&quot;application_1428668992862_18972192&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18972192/1&quot;},{&quot;key&quot;:8,&quot;id&quot;:&quot;65624865&quot;,&quot;appId&quot;:&quot;application_1428668992862_18992517&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18992517/1&quot;},{&quot;key&quot;:9,&quot;id&quot;:&quot;65723832&quot;,&quot;appId&quot;:&quot;application_1428668992862_18993853&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18993853/1&quot;},{&quot;key&quot;:10,&quot;id&quot;:&quot;64293393&quot;,&quot;appId&quot;:&quot;application_1428668992862_18973674&quot;,&quot;jobName&quot;:&quot;com.sohu.researchcenter.logprocess.service.hdfsaudit.HdfsAuditAggregateProcess&quot;,&quot;value&quot;:&quot;40&quot;,&quot;logUrl&quot;:&quot;http://portal.heracles.sohuno.com:18080/history/application_1428668992862_18973674/1&quot;}]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MR_Task_Index_Top_10" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489129583</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                  <elementProp name="type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">mr</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">type</stringProp>
-                  </elementProp>
-                  <elementProp name="metric" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">totaltaskcount</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">metric</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/top/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="78036543">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[{&quot;key&quot;:1,&quot;id&quot;:&quot;840007913455095808&quot;,&quot;appId&quot;:&quot;application_1428668992862_18980078&quot;,&quot;jobName&quot;:&quot;hdfs_audit_format&quot;,&quot;value&quot;:&quot;165&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:2,&quot;id&quot;:&quot;839962194740383744&quot;,&quot;appId&quot;:&quot;application_1428668992862_18975020&quot;,&quot;jobName&quot;:&quot;hdfs_audit_analysis&quot;,&quot;value&quot;:&quot;165&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:3,&quot;id&quot;:&quot;840067591870484480&quot;,&quot;appId&quot;:&quot;application_1428668992862_18985499&quot;,&quot;jobName&quot;:&quot;SparkStreamingDataLoadAnalyzer&quot;,&quot;value&quot;:&quot;136&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:4,&quot;id&quot;:&quot;840217868632199168&quot;,&quot;appId&quot;:&quot;application_1428668992862_18997458&quot;,&quot;jobName&quot;:&quot;SparkStreamingDataLoadAnalyzer&quot;,&quot;value&quot;:&quot;135&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:5,&quot;id&quot;:&quot;840203145626914818&quot;,&quot;appId&quot;:&quot;application_1428668992862_18996393&quot;,&quot;jobName&quot;:&quot;SparkStreamingDataLoadAnalyzer&quot;,&quot;value&quot;:&quot;135&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:6,&quot;id&quot;:&quot;840112523951869952&quot;,&quot;appId&quot;:&quot;application_1428668992862_18989102&quot;,&quot;jobName&quot;:&quot;SparkStreamingDataLoadAnalyzer&quot;,&quot;value&quot;:&quot;135&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:7,&quot;id&quot;:&quot;840082048512299008&quot;,&quot;appId&quot;:&quot;application_1428668992862_18986602&quot;,&quot;jobName&quot;:&quot;SparkStreamingDataLoadAnalyzer&quot;,&quot;value&quot;:&quot;135&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:8,&quot;id&quot;:&quot;840097245578792960&quot;,&quot;appId&quot;:&quot;application_1428668992862_18987752&quot;,&quot;jobName&quot;:&quot;SparkStreamingDataLoadAnalyzer&quot;,&quot;value&quot;:&quot;134&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:9,&quot;id&quot;:&quot;840174079863558144&quot;,&quot;appId&quot;:&quot;application_1428668992862_18994141&quot;,&quot;jobName&quot;:&quot;SparkStreamingDataLoadAnalyzer&quot;,&quot;value&quot;:&quot;133&quot;,&quot;logUrl&quot;:null},{&quot;key&quot;:10,&quot;id&quot;:&quot;840142675461148672&quot;,&quot;appId&quot;:&quot;application_1428668992862_18991557&quot;,&quot;jobName&quot;:&quot;SparkStreamingDataLoadAnalyzer&quot;,&quot;value&quot;:&quot;133&quot;,&quot;logUrl&quot;:null}]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
           </hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Operation_Audit" enabled="true"/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/jobs/compare" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+                <elementProp name="type" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">type</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/jobs/compare</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Operation_Order" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489131387</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/hdfs/operation</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="-808216109">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;legend&quot;:[&quot;指标&quot;],&quot;text&quot;:&quot;HDFS操作数量排行&quot;,&quot;series&quot;:[{&quot;name&quot;:&quot;指标&quot;,&quot;data&quot;:[664725,302865,44761,33631,30486,12356,4086,3621,1932,1]}],&quot;xAxisDatas&quot;:[&quot;获得文件信息&quot;,&quot;打开文件&quot;,&quot;查看状态&quot;,&quot;新建文件&quot;,&quot;重命名&quot;,&quot;删除文件&quot;,&quot;设置权限&quot;,&quot;设置Replication&quot;,&quot;新建目录&quot;,&quot;内容概览&quot;]}}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Index_Operation_Compare" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="startTime" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">1489131387</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">startTime</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/hdfs/compare</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="-1788814291">{&quot;code&quot;:0,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:[{&quot;metricName&quot;:&quot;设置时间&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;查看文件关闭&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;新建快照&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;删除指令Cache&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;重命名&quot;,&quot;yesterday&quot;:&quot;32179&quot;,&quot;beforeYesterday&quot;:&quot;29768&quot;,&quot;increase&quot;:&quot;2411&quot;,&quot;rate&quot;:&quot;8.1%&quot;},{&quot;metricName&quot;:&quot;允许快照&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;更改Cache池&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;更改指令Cache&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;设置Replication&quot;,&quot;yesterday&quot;:&quot;3822&quot;,&quot;beforeYesterday&quot;:&quot;3571&quot;,&quot;increase&quot;:&quot;251&quot;,&quot;rate&quot;:&quot;7.03%&quot;},{&quot;metricName&quot;:&quot;打开文件&quot;,&quot;yesterday&quot;:&quot;320289&quot;,&quot;beforeYesterday&quot;:&quot;294883&quot;,&quot;increase&quot;:&quot;25406&quot;,&quot;rate&quot;:&quot;8.62%&quot;},{&quot;metricName&quot;:&quot;createSymlink&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;添加Cache池&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;列举可以快照的目录&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;删除默认AclEntries&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;设置权限&quot;,&quot;yesterday&quot;:&quot;4295&quot;,&quot;beforeYesterday&quot;:&quot;4004&quot;,&quot;increase&quot;:&quot;291&quot;,&quot;rate&quot;:&quot;7.27%&quot;},{&quot;metricName&quot;:&quot;删除文件&quot;,&quot;yesterday&quot;:&quot;13110&quot;,&quot;beforeYesterday&quot;:&quot;12214&quot;,&quot;increase&quot;:&quot;896&quot;,&quot;rate&quot;:&quot;7.34%&quot;},{&quot;metricName&quot;:&quot;删除Cache池&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;添加指令Cache&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;获得文件信息&quot;,&quot;yesterday&quot;:&quot;705886&quot;,&quot;beforeYesterday&quot;:&quot;645853&quot;,&quot;increase&quot;:&quot;60033&quot;,&quot;rate&quot;:&quot;9.3%&quot;},{&quot;metricName&quot;:&quot;添加&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;删除快照&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;设置所有者&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;新建目录&quot;,&quot;yesterday&quot;:&quot;2136&quot;,&quot;beforeYesterday&quot;:&quot;1972&quot;,&quot;increase&quot;:&quot;164&quot;,&quot;rate&quot;:&quot;8.32%&quot;},{&quot;metricName&quot;:&quot;重命名快照&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;更改AclEntries&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;列举Cache池&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;连接&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;新建文件&quot;,&quot;yesterday&quot;:&quot;35701&quot;,&quot;beforeYesterday&quot;:&quot;33461&quot;,&quot;increase&quot;:&quot;2240&quot;,&quot;rate&quot;:&quot;6.69%&quot;},{&quot;metricName&quot;:&quot;fsck&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;禁止快照&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;列举指令Cache&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;计算快照差异&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;设置Acl&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;查看状态&quot;,&quot;yesterday&quot;:&quot;46190&quot;,&quot;beforeYesterday&quot;:&quot;43627&quot;,&quot;increase&quot;:&quot;2563&quot;,&quot;rate&quot;:&quot;5.87%&quot;},{&quot;metricName&quot;:&quot;删除Acl&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;startRollingUpgrade&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;内容概览&quot;,&quot;yesterday&quot;:&quot;2&quot;,&quot;beforeYesterday&quot;:&quot;4&quot;,&quot;increase&quot;:&quot;-2&quot;,&quot;rate&quot;:&quot;-50%&quot;},{&quot;metricName&quot;:&quot;删除AclEntries&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;},{&quot;metricName&quot;:&quot;finalizeRollingUpgrade&quot;,&quot;yesterday&quot;:&quot;0&quot;,&quot;beforeYesterday&quot;:&quot;0&quot;,&quot;increase&quot;:&quot;0&quot;,&quot;rate&quot;:&quot;-&quot;}]}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-            </hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/hbase" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/hbase</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/top/data" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+                <elementProp name="type" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${top_data_type}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">type</stringProp>
+                </elementProp>
+                <elementProp name="metric" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${top_data_metric}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">metric</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/top/data</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/hdfs/operation" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/hdfs/operation</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/api/overview/index/hdfs/compare" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="startTime" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${now_sec}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">startTime</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigdata-web/api/overview/index/hdfs/compare</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytics_Job" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytics_Job" enabled="false"/>
         <hashTree>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Job_Overview" enabled="true"/>
           <hashTree>
@@ -2858,7 +2640,7 @@
             </hashTree>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytics_HBase" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytics_HBase" enabled="false"/>
         <hashTree>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="HBase_Overview" enabled="true"/>
           <hashTree>
@@ -3044,7 +2826,7 @@
             </hashTree>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytic_HDFS" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytic_HDFS" enabled="false"/>
         <hashTree>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="HDFS_Operation" enabled="true"/>
           <hashTree>
@@ -3209,7 +2991,7 @@
             </hashTree>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytic_Yarn" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytic_Yarn" enabled="false"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Yarn_RM_Absolute_Used_Capacity_20170306_20170309" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
@@ -3316,7 +3098,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytic_Comparision" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Statistic_Analytic_Comparision" enabled="false"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Comparision_MR_201703060312_201703130319" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
