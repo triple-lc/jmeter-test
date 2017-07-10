@@ -5,6 +5,7 @@
     	<format property="time" pattern="yyyyMMddhhmm" />
     </tstamp>
     
+    <property name="ReportName" value="TestReport"/>
     <property name="jmeter.home" value="/data_b/work/apache-jmeter-3.1" />
     <property name="jmeter.result" value="./TestResult" />
     <property name="jmeter.result.jtlName" value="${jmeter.result}/${ReportName}${time}.jtl" />
