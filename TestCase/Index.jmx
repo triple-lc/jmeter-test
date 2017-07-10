@@ -132,13 +132,25 @@
               <intProp name="Assertion.test_type">16</intProp>
             </ResponseAssertion>
             <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Get cluster number" enabled="false">
+              <stringProp name="JSONPostProcessor.referenceNames">cluster_num</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..clusters.length()</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Get clusters" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">clusters</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..clusters</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="LoginEnter" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="cluster" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">cdh</stringProp>
+                  <stringProp name="Argument.value">${cluster}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">cluster</stringProp>
@@ -171,12 +183,28 @@
               <intProp name="Assertion.test_type">16</intProp>
             </ResponseAssertion>
             <hashTree/>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
               <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
+              <stringProp name="parameters">${cluster}</stringProp>
               <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="script"></stringProp>
-            </BeanShellPostProcessor>
+              <stringProp name="script">import org.apache.jmeter.protocol.http.control.CookieManager;
+import org.apache.jmeter.protocol.http.control.Cookie;
+
+	
+   StringBuffer clusters = new StringBuffer(vars.get(&quot;clusters&quot;));
+   String subClusters = clusters.substring(1,clusters.length()-1);
+   String[] split = subClusters.split(&quot;,&quot;);
+   Random random = new Random();
+   int index = random.nextInt(split.length);
+   String cluster = split[index].substring(1,split[index].length() - 1);
+   vars.put(&quot;cluster&quot;,cluster);
+   
+   CookieManager manager = sampler.getCookieManager();
+   Cookie cookie = new Cookie(&quot;clusterType&quot;,cluster,&quot;panther.sohurdc.com&quot;,&quot;/&quot;,false,0);
+   manager.add(cookie);
+
+   </stringProp>
+            </BeanShellPreProcessor>
             <hashTree/>
           </hashTree>
         </hashTree>
