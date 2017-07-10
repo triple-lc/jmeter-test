@@ -18,7 +18,7 @@
     <target name="test">
 	<taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" />
 	<jmeter jmeterhome="${jmeter.home}" resultlog="${jmeter.result.jtlName}" >
-        <testplans dir="./jmeter-test/TestCase" includes="*.jmx" />
+        <testplans dir="./TestCase" includes="*.jmx" />
 		<property name="jmeter.save.saveservice.output_format" value="xml" />
 	</jmeter>
     </target>
